@@ -31,6 +31,8 @@ classdef ContentAdapterFactory
                     adapter = datatree.adapter.MatFileAdapter(filePath);
                 case {'.h5', '.hdf5', '.nwb'}
                     adapter = datatree.adapter.Hdf5FileAdapter(filePath);
+                case {'.csv'}
+                    adapter = datatree.adapter.CsvFileAdapter(filePath);
                 otherwise
                     error('ContentAdapterFactory:UnsupportedFileType', ...
                         'Unsupported file type: %s', ext);
@@ -43,7 +45,8 @@ classdef ContentAdapterFactory
             adapters = {
                 'datatree.adapter.MatFileAdapter', ...
                 'datatree.adapter.Hdf5FileAdapter', ...
-                'datatree.adapter.FileSystemAdapter'
+                'datatree.adapter.FileSystemAdapter', ...
+                'datatree.adapter.CsvFileAdapter'
             };
         end
         
